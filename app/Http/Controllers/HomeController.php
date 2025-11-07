@@ -44,9 +44,7 @@ class HomeController extends Controller
             'destination_id',
         ])
             ->where('is_active', true)
-            ->with(['destination' => function ($query) {
-                $query->select('id', 'title', 'location');
-            }])
+            ->with(['destination' => fn($q) => $q->select('id', 'title', 'location')])
             ->orderBy('created_at', 'desc')
             ->get()
             ->map(function ($offer) use ($favorites) {
@@ -57,13 +55,15 @@ class HomeController extends Controller
                 $offer->discount_price = $offer->discount_price ?? null;
                 $offer->discount_type = $offer->discount_type ?? '';
                 $offer->category = $offer->category ?? '';
-                $offer->start_date = $offer->start_date ? $offer->start_date->format('Y-m-d') : null;
-                $offer->end_date = $offer->end_date ? $offer->end_date->format('Y-m-d') : null;
-                $offer->destination_title = $offer->destination ? $offer->destination->title : 'Unknown Destination';
-                $offer->destination_location = $offer->destination ? $offer->destination->location : 'Unknown Location';
+                $offer->start_date = $offer->start_date?->format('Y-m-d');
+                $offer->end_date = $offer->end_date?->format('Y-m-d');
+                $offer->destination_title = $offer->destination?->title ?? 'Unknown Destination';
+                $offer->destination_location = $offer->destination?->location ?? 'Unknown Location';
+
                 $favorite = $favorites->firstWhere('offer_id', $offer->id);
                 $offer->is_favorite = !is_null($favorite);
-                $offer->favorite_id = $favorite ? $favorite->id : null;
+                $offer->favorite_id = $favorite?->id;
+
                 return $offer;
             });
 
@@ -91,10 +91,11 @@ class HomeController extends Controller
                 $destination->discount_price = $destination->discount_price ?? null;
                 $destination->category = $destination->category ?? '';
                 $destination->rating = $destination->rating ?? 0;
-                $destination->is_featured = $destination->is_featured ?? false;
+
                 $favorite = $favorites->firstWhere('destination_id', $destination->id);
                 $destination->is_favorite = !is_null($favorite);
-                $destination->favorite_id = $favorite ? $favorite->id : null;
+                $destination->favorite_id = $favorite?->id;
+
                 return $destination;
             });
 
@@ -116,9 +117,7 @@ class HomeController extends Controller
             'group_size',
         ])
             ->where('is_active', true)
-            ->with(['destination' => function ($query) {
-                $query->select('id', 'title', 'location');
-            }])
+            ->with(['destination' => fn($q) => $q->select('id', 'title', 'location')])
             ->orderBy('created_at', 'desc')
             ->get()
             ->map(function ($package) use ($favorites) {
@@ -128,11 +127,13 @@ class HomeController extends Controller
                 $package->price = $package->price ?? 0;
                 $package->discount_price = $package->discount_price ?? null;
                 $package->category = $package->category ?? '';
-                $package->destination_title = $package->destination ? $package->destination->title : 'Unknown Destination';
-                $package->destination_location = $package->destination ? $package->destination->location : 'Unknown Location';
+                $package->destination_title = $package->destination?->title ?? 'Unknown Destination';
+                $package->destination_location = $package->destination?->location ?? 'Unknown Location';
+
                 $favorite = $favorites->firstWhere('package_id', $package->id);
                 $package->is_favorite = !is_null($favorite);
-                $package->favorite_id = $favorite ? $favorite->id : null;
+                $package->favorite_id = $favorite?->id;
+
                 return $package;
             });
 
@@ -147,22 +148,10 @@ class HomeController extends Controller
             'destinations_empty_subtitle' => __('Please check back later for new exciting locations.'),
             'benefits_section_title' => __('Why Choose JOOD'),
             'benefits' => [
-                [
-                    'title' => __('Best Price Guarantee'),
-                    'description' => __('We guarantee the best prices compared to anywhere else.')
-                ],
-                [
-                    'title' => __('Secure Booking'),
-                    'description' => __('Your personal information and payments are always protected.')
-                ],
-                [
-                    'title' => __('High-Quality Service'),
-                    'description' => __('Our support team is available 24/7 to assist you.')
-                ],
-                [
-                    'title' => __('Loyalty Rewards'),
-                    'description' => __('Earn points with every booking and enjoy exclusive benefits.')
-                ]
+                ['title' => __('Best Price Guarantee'), 'description' => __('We guarantee the best prices compared to anywhere else.')],
+                ['title' => __('Secure Booking'), 'description' => __('Your personal information and payments are always protected.')],
+                ['title' => __('High-Quality Service'), 'description' => __('Our support team is available 24/7 to assist you.')],
+                ['title' => __('Loyalty Rewards'), 'description' => __('Earn points with every booking and enjoy exclusive benefits.')],
             ],
             'search_placeholder' => __('Search for destinations, offers, or packages...'),
             'surprise_me' => __('Surprise Me'),
@@ -171,22 +160,21 @@ class HomeController extends Controller
             'starting_from' => __('Starting from'),
             'per_night' => __('/ night'),
             'explore_all_destinations' => __('Explore All Destinations'),
-            'over_200_destinations' => __('Over 200+ exotic locations to discover around the world')
+            'over_200_destinations' => __('Over 200+ exotic locations to discover around the world'),
         ];
 
-        return Inertia::render('Home', [
+        return Inertia::render('Home/HomePage', [
             'heroSections' => $heroSections,
             'offers' => $offers,
             'destinations' => $destinations,
             'packages' => $packages,
             'translations' => $translations,
-            'favorites' => $favorites->map(function ($favorite) {
-                return [
-                    'id' => $favorite->id,
-                    'favoritable_type' => $favorite->offer_id ? 'offer' : ($favorite->destination_id ? 'destination' : 'package'),
-                    'favoritable_id' => $favorite->offer_id ?? $favorite->destination_id ?? $favorite->package_id,
-                ];
-            }),
+            'favorites' => $favorites->map(fn($f) => [
+                'id' => $f->id,
+                'favoritable_type' => $f->offer_id ? 'offer' : ($f->destination_id ? 'destination' : 'package'),
+                'favoritable_id' => $f->offer_id ?? $f->destination_id ?? $f->package_id,
+            ]),
+            'auth' => Auth::guard('web')->check() ? ['user' => Auth::guard('web')->user()] : null,
         ]);
     }
 }
