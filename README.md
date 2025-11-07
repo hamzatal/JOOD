@@ -1,4 +1,4 @@
-<p align="center">
+<p align="center"> 
   <img src="public/images/JOOD.png" alt="JOOD Banner" width="100%" />
 </p>
 
