@@ -7,77 +7,76 @@ const LegalPopup = ({ type, onClose }) => {
         privacyPolicy: {
             title: "Privacy Policy",
             text: `
-        At JOOD, we value your privacy. This Privacy Policy outlines how we collect, use, and protect your information.
+At JOOD, your privacy is our priority. This Privacy Policy explains how we collect, use, and protect your information when you use our smart cooking platform.
 
-        **1. Information We Collect**
-        • Personal Information: Name, email address, phone number, etc.
-        • Usage Data: Information about how you use our services, including IP address, browser type, and pages visited.
+**1. Information We Collect**
+• Personal Information: Name, email address, and contact information.
+• Usage Data: How you interact with JOOD, including ingredients you enter, recipes generated, and orders placed.
+• Device Data: IP address, browser type, and session details.
 
-        **2. How We Use Your Information**
-        • To provide and maintain our services
-        • To notify you about changes to our services
-        • To allow you to participate in interactive features of our services
-        • To provide customer support
-        • To gather analysis or valuable information so that we can improve our services
-        • To monitor the usage of our services
-        • To detect, prevent, and address technical issues
+**2. How We Use Your Information**
+• To generate personalized recipes based on your ingredients.
+• To process and track orders for missing ingredients.
+• To improve our AI services and platform features.
+• To send updates and notifications about your account or the platform.
+• To provide customer support.
 
-        **3. Data Security**
-        We take the security of your data seriously. We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, use, or disclosure.
+**3. Data Security**
+We use appropriate technical and organizational measures to protect your personal information from unauthorized access, misuse, or disclosure.
 
-        **4. Your Rights**
-        You have the right to:
-        • Access your personal information
-        • Request correction of your personal information
-        • Request deletion of your personal information
-        • Object to the processing of your personal information
-        • Withdraw consent at any time where we rely on your consent to process your personal information
+**4. Your Rights**
+You can:
+• Access and update your personal information.
+• Request deletion of your account data.
+• Opt-out of marketing communications.
+• Withdraw consent for data processing at any time.
 
-        **5. Changes to This Privacy Policy**
-        We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
-        We will let you know via email and/or a prominent notice on our services, prior to the change becoming effective and update the "effective date" at the top of this Privacy Policy.
-        You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+**5. Changes to This Privacy Policy**
+We may update this policy periodically. Changes will be communicated via the website or email notifications. Please review regularly.
 
-        **6. Contact Us**
-        If you have any questions about this Privacy Policy, please contact us:
-        • By email: support@JOOD.com
-        • By phone: +1 (123) 456-7890
+**6. Contact Us**
+For any privacy-related inquiries, reach us at:
+• Email: support@jood.com
+• Phone: +1 (123) 456-7890
       `,
         },
         termsOfService: {
             title: "Terms of Service",
             text: `
-        Welcome to JOOD. By using our services, you agree to the following terms and conditions:
+Welcome to JOOD – your Smart Cooking Assistant. By using our platform, you agree to the following terms:
 
-        **1. Acceptance of Terms**
-        By accessing or using our services, you agree to be bound by these terms and conditions. If you do not agree to these terms, please do not use our services.
+**1. Acceptance of Terms**
+Using JOOD means you accept our terms. If you do not agree, please refrain from using our services.
 
-        **2. Intellectual Property**
-        All content, including text, graphics, logos, and images, is the property of JOOD or its licensors and is protected by intellectual property laws.
+**2. User Conduct**
+• Use the platform responsibly and legally.
+• Do not misuse AI-generated content.
+• Respect intellectual property rights of JOOD and others.
 
-        **3. User Conduct**
-        You agree to use our services for lawful purposes and in a manner that does not violate any applicable laws or regulations.
+**3. Account Responsibilities**
+• Keep your login credentials confidential.
+• Ensure that information you provide is accurate.
 
-        **4. Privacy Policy**
-        We collect and use your information in accordance with our Privacy Policy.
+**4. AI-Generated Content**
+Recipes and suggestions are generated by our AI based on your input. JOOD is not liable for personal dietary issues, allergies, or outcomes.
 
-        **5. Limitation of Liability**
-        We shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from the use or inability to use our services.
+**5. Orders**
+• Users may place orders for missing ingredients from connected stores.
+• JOOD facilitates orders but is not responsible for delivery delays or errors.
 
-        **6. Indemnification**
-        You agree to indemnify and hold harmless JOOD and its affiliates, licensors, and suppliers from any claims, damages, or liabilities arising from your use of our services.
+**6. Limitation of Liability**
+JOOD is not liable for any indirect or incidental damages from using the platform or AI suggestions.
 
-        **7. Governing Law**
-        These terms and conditions shall be governed by and construed in accordance with the laws of [Your Jurisdiction]. Any disputes arising from these terms and conditions shall be subject to the exclusive jurisdiction of the courts located in [Your Jurisdiction].
+**7. Governing Law**
+These terms are governed by the laws of [Your Jurisdiction]. Disputes are resolved in local courts.
 
-        **8. Changes to Terms**
-        We may update these terms and conditions from time to time. We will notify you of any changes by posting the new terms on this page.
-        You are advised to review these terms periodically for any changes. Changes to these terms are effective when they are posted on this page.
+**8. Updates to Terms**
+We may modify these terms. Updates will be posted on this page. Continued use constitutes acceptance.
 
-        **9. Contact Us**
-        If you have any questions about these terms and conditions, please contact us:
-        • By email: support@JOOD.com
-        • By phone: +1 (123) 456-7890
+**9. Contact**
+For questions regarding terms of service, contact us at:
+• Email: support@jood.com
+• Phone: +1 (123) 456-7890
       `,
         },
     };
@@ -148,16 +147,13 @@ const Footer = () => {
                 animate={{ opacity: 1 }}
                 className="relative py-4 mt-12 text-center"
             >
-                <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: "url('/images/world.svg')" }}
-                />
+               
                 <div className="absolute inset-0 bg-black opacity-50" />
                 <div className="relative z-10">
                     <p className="text-white text-sm">
                         © 2025 JOOD. All rights reserved.
                     </p>
-                    <div className="mt-10 space-x-6">
+                    <div className="mt-8 space-x-6">
                         <button
                             onClick={() => setActivePopup("privacyPolicy")}
                             className="text-white text-sm hover:bg-green-500/20 hover:text-green-500 rounded-full px-3 py-1 transition-all duration-300"

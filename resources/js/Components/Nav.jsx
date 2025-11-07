@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    Hotel,
     Plane,
     BookOpen,
     Bookmark,
@@ -15,6 +14,7 @@ import {
     PackageCheck,
     LayoutDashboard,
     Building2,
+    HomeIcon,
 } from "lucide-react";
 import { Link, usePage, router } from "@inertiajs/react";
 import axios from "axios";
@@ -152,7 +152,7 @@ const Nav = ({ isDarkMode = true, wishlist = [] }) => {
     };
 
     const navItems = [
-        { label: "Home", href: "/home", icon: Hotel },
+        { label: "Home", href: "/", icon: HomeIcon },
         { label: "Packages", href: "/packages", icon: PackageCheck },
         { label: "Destinations", href: "/destinations", icon: Map },
         { label: "Offers", href: "/offers", icon: Bookmark },
