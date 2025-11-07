@@ -57,14 +57,9 @@ require __DIR__ . '/auth.php';
 
 Route::get('/about-us', fn() => Inertia::render('about-us'))->name('about-us');
 Route::get('/ContactPage', fn() => Inertia::render('ContactPage'))->name('ContactPage');
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->name('welcome');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
 // ===================================================
 //! Company Authentication Routes (Public)
@@ -85,7 +80,6 @@ Route::post('/admin/login', [LoginController::class, 'store'])->name('admin.logi
 
 Route::middleware(['auth:web,company', 'verified'])->group(function () {
     // Home page accessible to both regular users and companies
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     // Public routes that both user types can access
     Route::get('/destinations', [DestinationController::class, 'allDestinations'])->name('destinations.index');

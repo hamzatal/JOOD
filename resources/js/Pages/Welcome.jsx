@@ -19,7 +19,7 @@ const WelcomePage = () => {
                     <div className="flex items-center">
                         <Hotel className="w-10 h-10 text-green-500 mr-3" />
                         <h1 className="text-3xl font-bold text-white">
-                            Travel <span className="text-green-500">Nest</span>
+                            JOOD 
                         </h1>
                     </div>
                     <div className="flex items-center space-x-4">
@@ -35,7 +35,7 @@ const WelcomePage = () => {
                 <div className="flex-1 flex items-center justify-center p-6">
                     <div className="text-center max-w-3xl">
                         <h1 className="text-6xl font-black mb-6 leading-tight text-white">
-                            Welcome to Travel <span className="text-green-500">Nest</span>
+                            Welcome to JOOD 
                         </h1>
                         <p className="text-xl mb-8 leading-relaxed text-gray-300">
                             Plan your next adventure with the best travel deals. Find exclusive offers on hotels, flights, and tours.

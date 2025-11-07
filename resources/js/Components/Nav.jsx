@@ -12,7 +12,6 @@ import {
     Menu,
     X,
     Search,
-    PlaneIcon,
     PackageCheck,
     LayoutDashboard,
     Building2,
@@ -34,9 +33,6 @@ const Nav = ({ isDarkMode = true, wishlist = [] }) => {
     const searchRef = useRef(null);
     const profileRef = useRef(null);
 
-
-
-    // Handle scroll effect
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
@@ -45,7 +41,6 @@ const Nav = ({ isDarkMode = true, wishlist = [] }) => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Close mobile menu on resize
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth >= 1024) {
@@ -56,7 +51,6 @@ const Nav = ({ isDarkMode = true, wishlist = [] }) => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    // Close search bar and results when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (
@@ -110,14 +104,12 @@ const Nav = ({ isDarkMode = true, wishlist = [] }) => {
         return () => clearTimeout(delayDebounceFn);
     }, [searchQuery]);
 
-    // Handle clear search
     const handleClearSearch = () => {
         setSearchQuery("");
         setSearchResults([]);
         setIsSearchOpen(false);
     };
 
-    // Handle result selection
     const getItemUrl = (item) => {
         switch (item.type) {
             case "destination":
@@ -206,20 +198,17 @@ const Nav = ({ isDarkMode = true, wishlist = [] }) => {
 
     const isActive = (href) => url === href;
 
-    // Toggle dropdown function
     const toggleDropdown = (e) => {
         e.stopPropagation();
         e.preventDefault();
         setIsDropdownOpen(!isDropdownOpen);
     };
 
-    // Profile Button Component
     const ProfileButton = () => {
         if (!auth || (!auth.user && !auth.company)) {
-            return null; // Don't render if auth is null or no user/company is authenticated
+            return null;
         }
 
-        // Check if auth.user contains company-specific fields
         const isCompanyUser =
             auth.user && (auth.user.company_name || auth.user.license_number);
         const effectiveUser = isCompanyUser ? null : auth.user;
@@ -227,7 +216,7 @@ const Nav = ({ isDarkMode = true, wishlist = [] }) => {
 
         const displayAvatar = effectiveUser?.avatar_url
             ? effectiveUser.avatar_url
-            : "/images/avatar.webp";
+            : "/images/joodlogo.png";
 
         return (
             <div className="relative" ref={profileRef}>
@@ -287,7 +276,7 @@ const Nav = ({ isDarkMode = true, wishlist = [] }) => {
             </div>
         );
     };
-    // Add custom CSS for scrollbar and separator
+
     useEffect(() => {
         const style = document.createElement("style");
         style.textContent = `
@@ -331,10 +320,11 @@ const Nav = ({ isDarkMode = true, wishlist = [] }) => {
         >
             {/* Logo */}
             <div className="flex items-center">
-                <PlaneIcon className="w-10 h-10 text-green-500 mr-3" />
-                <h1 className="text-3xl font-bold text-white">
-                    Travel <span className="text-green-500">Nest</span>
-                </h1>
+                <img
+                    src="/images/joodw.png"
+                    alt="JOOD Logo"
+                    className="w-21 h-9 mr-0"
+                />
             </div>
 
             {/* Desktop Navigation */}
@@ -528,12 +518,12 @@ const Nav = ({ isDarkMode = true, wishlist = [] }) => {
                     </AnimatePresence>
                 </div>
 
-                {/* Book Now Button */}
+                {/* login Button */}
                 <Link
-                    href="/booking"
+                    href="/login"
                     className="hidden md:flex items-center bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full transition-colors"
                 >
-                    Book Now <Plane className="ml-2 w-5 h-5" />
+                    SignIn / SignUp
                 </Link>
 
                 {/* Profile Button */}
@@ -568,7 +558,7 @@ const Nav = ({ isDarkMode = true, wishlist = [] }) => {
                                     onChange={(e) =>
                                         setSearchQuery(e.target.value)
                                     }
-                                    placeholder="Search offers, destinations..."
+                                    placeholder="Search Recipes..."
                                     className="w-full pl-12 pr-12 py-3 bg-green-600/10 border-b border-green-500/30 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/50 rounded-t-xl"
                                 />
                                 {searchQuery && (
@@ -739,14 +729,14 @@ const Nav = ({ isDarkMode = true, wishlist = [] }) => {
                         )}
                     </div>
 
-                    {/* Book Now Button on Mobile */}
+                    {/* login Button on Mobile */}
                     <div className="px-6 mt-4">
                         <Link
                             href="/booking"
                             className="flex items-center justify-center w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full transition-colors"
                             onClick={() => setIsMobileMenuOpen(false)}
                         >
-                            Book Now <Plane className="ml-2 w-5 h-5" />
+                            SignIn / SignUp
                         </Link>
                     </div>
                 </div>

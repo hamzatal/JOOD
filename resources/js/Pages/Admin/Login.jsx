@@ -182,7 +182,7 @@ const AdminLoginPage = () => {
         <div className="min-h-screen w-full relative bg-gray-900">
             {" "}
             {/* Added default bg */}
-            <Head title="Admin Login - Travel Nest" />
+            <Head title="Admin Login - JOOD" />
             {/* Background Image */}
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20" // Reduced opacity
@@ -234,8 +234,7 @@ const AdminLoginPage = () => {
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="text-5xl font-bold text-white"
                         >
-                            Travel Nest{" "}
-                            <span className="text-green-400">Admin</span>
+                            JOOD <span className="text-green-400">Admin</span>
                         </motion.h1>
                         <motion.p
                             initial={{ y: 20, opacity: 0 }}

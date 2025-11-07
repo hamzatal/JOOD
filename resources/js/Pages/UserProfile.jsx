@@ -695,7 +695,7 @@ const UserProfile = () => {
                                 <div className="flex items-center space-x-3">
                                     <Mail className="w-5 h-5 text-green-500" />
                                     <p className="text-gray-300">
-                                        <span className="font-medium text-white">Email:</span> TravelNest@support.com
+                                        <span className="font-medium text-white">Email:</span>  jood@support.com
                                     </p>
                                 </div>
                             </div>

@@ -97,7 +97,7 @@ const Contact = ({ auth }) => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white transition-all duration-300 relative">
-            <Head title="Contact Us - Travel Nest" />
+            <Head title="Contact Us - JOOD" />
 
             <AnimatePresence>
                 {notification && (
@@ -169,8 +169,8 @@ const Contact = ({ auth }) => {
                         <p className="text-lg mb-8 leading-relaxed text-gray-300">
                             We value your feedback and are here to assist you!
                             Whether you have questions, suggestions, or need
-                            support, the Travel Nest team is committed to
-                            helping you plan your next adventure.
+                            support, the JOOD team is committed to helping you
+                            plan your next adventure.
                         </p>
 
                         <div className="space-y-6">
@@ -183,7 +183,7 @@ const Contact = ({ auth }) => {
                                         Email Us
                                     </h3>
                                     <p className="text-gray-400">
-                                        support@travelnest.com
+                                        support@jood.com
                                     </p>
                                 </div>
                             </div>
