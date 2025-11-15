@@ -1,5 +1,5 @@
 <p align="center"> 
-  <img src="public/images/JOOD.png" alt="JOOD Banner" width="100%" />
+  <img src="public/images/joodd.png" alt="JOOD Banner" width="100%" />
 </p>
 
 <h1 align="center">✨ JOOD - Smart Cooking Platform ✨</h1>
